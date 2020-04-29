@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FirestoreUtilsService } from '../services/firestore/firestore-utils.service';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,21 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  products: Product[] = [];
 
+  constructor(private firestore: FirestoreUtilsService) {
+    this.firestore.getProducts().subscribe(data => {
+      this.products = data.map(p => {
+        return {
+          id: p.payload.doc.id,
+          name: p.payload.doc.get('name'),
+          price: p.payload.doc.get('price')
+        } as Product;
+      });
+    });
+  }
+
+  signOut() {
+    this.firestore.signOut();
+  }
 }

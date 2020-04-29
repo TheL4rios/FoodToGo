@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inicio Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img src="assets/img/avatar.png" class="image"></ion-img>
+  <form class="form" [formGroup]="signInGroup">
+    <ion-list>
+      <ion-item>
+        <ion-icon slot="start" name="mail"></ion-icon>
+        <ion-label position="floating">Correo <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="eye"></ion-icon>
+        <ion-label position="floating">Contraseña <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" shape="round" type="submit" (click)="signIn()">
+      Iniciar sesión
+    </ion-button>
+  </form>
+</ion-content>
